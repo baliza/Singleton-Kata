@@ -8,7 +8,7 @@ namespace Singleton_kata
     class Program
     {
 
-        public class Adam
+        public sealed class Adam
         {
             static Adam adam;
             private Adam()
@@ -51,26 +51,26 @@ namespace Singleton_kata
                 Assert.IsFalse(typeof(Adam).GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
                   .Any(x => x.IsPublic || x.IsAssembly ));
             }
- /*
 
             public static void Adam_is_unique_and_cannot_be_overriden()
             {
                 Assert.IsTrue(typeof(Adam).IsSealed);
             }
 
-            [Test]
+ /*
+            
             public static void Adam_is_a_human()
             {
                 Assert.IsTrue(Adam.GetInstance() is Human); 
             }
 
-            [Test]
+            
             public static void Adam_is_a_male()
             { 
                 Assert.IsTrue(Adam.GetInstance() is Male);
             }
 
-            [Test]
+            
             public static void Eve_is_unique_and_created_from_a_rib_of_adam()
             {
                 Adam adam = Adam.GetInstance();
@@ -91,7 +91,7 @@ namespace Singleton_kata
                 Assert.IsTrue(typeof(Eve).IsSealed);
             }
 
-            [Test]
+            
             public static void Eve_can_only_be_create_of_a_rib_of_adam()
             {
                 Assert.Throws<ArgumentNullException>(() => Eve.GetInstance(null));
@@ -155,6 +155,7 @@ namespace Singleton_kata
             {
                 SampleTests.Adam_is_unique();
                 SampleTests.Adam_is_unique_and_only_GetInstance_can_return_adam();
+                SampleTests.Adam_is_unique_and_cannot_be_overriden();
                 Console.WriteLine("Hello World!");
             }
         }
