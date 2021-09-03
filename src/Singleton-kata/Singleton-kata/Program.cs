@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Linq;
+using System.Reflection;
 using NUnit.Framework;
 
 namespace Singleton_kata
@@ -14,11 +16,7 @@ namespace Singleton_kata
 
             }
             public static Adam GetInstance()
-            {
-                //this is not right
-                return new Adam();
-
-                //this is the right way to do singleton
+            {               
                 if (adam == null)
                     adam = new Adam();
                 return adam;
@@ -43,7 +41,7 @@ namespace Singleton_kata
 
             // Implement all the tests below one by one!
 
-            /*
+           
             public static void Adam_is_unique_and_only_GetInstance_can_return_adam()
             {   
                 // GetInstance() is the only static method on Adam
@@ -53,7 +51,7 @@ namespace Singleton_kata
                 Assert.IsFalse(typeof(Adam).GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
                   .Any(x => x.IsPublic || x.IsAssembly ));
             }
-
+ /*
 
             public static void Adam_is_unique_and_cannot_be_overriden()
             {
@@ -156,6 +154,7 @@ namespace Singleton_kata
             static void Main(string[] args)
             {
                 SampleTests.Adam_is_unique();
+                SampleTests.Adam_is_unique_and_only_GetInstance_can_return_adam();
                 Console.WriteLine("Hello World!");
             }
         }
