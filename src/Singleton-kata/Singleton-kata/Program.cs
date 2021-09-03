@@ -11,7 +11,9 @@ namespace Singleton_kata
 		{
 			private static Adam _adam;
 
-			private Adam() : base("Adam", null, null) { }
+			private Adam() : base("Adam", null, null)
+			{
+			}
 
 			public static Adam GetInstance()
 			{
@@ -63,6 +65,12 @@ namespace Singleton_kata
 
 			public Human(string name, Female mother, Male father)
 			{
+				//if (string.IsNullOrEmpty(name))
+				//	throw new ArgumentNullException("Every Human needs a name");
+				//if (mother == null)
+				//	throw new ArgumentNullException("Every Human needs a mother");
+				//if (father == null)
+				//	throw new ArgumentNullException("Every Human needs a father");
 				Name = name;
 				Mother = mother;
 				Father = father;
@@ -172,45 +180,91 @@ namespace Singleton_kata
 				Assert.AreEqual(azura, enos.Mother);
 			}
 
-			/*
-															public static void Father_and_mother_are_essential_for_reproduction()
-															{
-																// There is just 1 way to reproduce
-																Assert.AreEqual(1, typeof(Male).GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
-																  .Where(x => x.IsPublic || x.IsAssembly).Count());
-																Assert.AreEqual(1, typeof(Female).GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).
-																  Where(x => x.IsPublic || x.IsAssembly).Count());
-
-																var adam = Adam.GetInstance();
-																var eve = Eve.GetInstance(adam);
-																Assert.Throws<ArgumentNullException>(() => new Male("Seth", null, null));
-																Assert.Throws<ArgumentNullException>(()=> new Male("Abel", eve, null));
-																Assert.Throws<ArgumentNullException>(() => new Male("Seth", null, adam));
-																Assert.Throws<ArgumentNullException>(() => new Female("Azura", null, null));
-																Assert.Throws<ArgumentNullException>(() => new Female("Awan", eve, null));
-																Assert.Throws<ArgumentNullException>(() => new Female("Dina", null, adam));
-																Assert.Throws<ArgumentNullException>(() => new Female("Eve", null, null));
-																Assert.Throws<ArgumentNullException>(() => new Male("Adam", null, null));
-															}
-															}
-															*/
-
-			private static void Main(string[] args)
+			public static void Father_and_mother_are_essential_for_reproduction()
 			{
-				//SampleTests.Adam_is_unique();
-				//SampleTests.Adam_is_unique_and_only_GetInstance_can_return_adam();
-				//SampleTests.Adam_is_unique_and_cannot_be_overriden();
-				//SampleTests.Adam_is_a_human();
-				//SampleTests.Adam_is_a_male();
+				// There is just 1 way to reproduce
+				Assert.AreEqual(1, typeof(Male).GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+				  .Where(x => x.IsPublic || x.IsAssembly).Count());
+				Assert.AreEqual(1, typeof(Female).GetConstructors(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance).
+				  Where(x => x.IsPublic || x.IsAssembly).Count());
 
-				//SampleTests.Eve_is_unique_and_created_from_a_rib_of_adam();
-				//SampleTests.Eve_can_only_be_create_of_a_rib_of_adam();
-				//SampleTests.Eve_is_a_human();
-				//SampleTests.Eve_is_a_female();
-				//SampleTests.Reproduction_always_result_in_a_male_or_female();
-				SampleTests.Humans_can_reproduce_when_there_is_a_name_a_mother_and_a_father();
-				Console.WriteLine("Hello World!");
+				var adam = Adam.GetInstance();
+				var eve = Eve.GetInstance(adam);
+				try
+				{
+					var _ = new Male("Seth", null, null);
+					Assert.Fail();
+				}
+				catch (ArgumentNullException) { }
+
+				try
+				{
+					var _ = new Male("Abel", eve, null);
+					Assert.Fail();
+				}
+				catch (ArgumentNullException) { }
+
+				try
+				{
+					var _ = new Male("Seth", null, adam);
+					Assert.Fail();
+				}
+				catch (ArgumentNullException) { }
+
+				try
+				{
+					var _ = new Female("Azura", null, null);
+					Assert.Fail();
+				}
+				catch (ArgumentNullException) { }
+
+				try
+				{
+					var _ = new Female("Awan", eve, null);
+					Assert.Fail();
+				}
+				catch (ArgumentNullException) { }
+
+				try
+				{
+					var _ = new Female("Dina", null, adam);
+					Assert.Fail();
+				}
+				catch (ArgumentNullException) { }
+
+				try
+				{
+					var _ = new Female("Eve", null, null);
+					Assert.Fail();
+				}
+				catch (ArgumentNullException) { }
+
+				try
+				{
+					var _ = new Male("Adam", null, null);
+					Assert.Fail();
+				}
+				catch (ArgumentNullException) { }
 			}
+		}
+
+		private static void Main(string[] args)
+		{
+			//SampleTests.Adam_is_unique();
+			//SampleTests.Adam_is_unique_and_only_GetInstance_can_return_adam();
+			//SampleTests.Adam_is_unique_and_cannot_be_overriden();
+			//SampleTests.Adam_is_a_human();
+			//SampleTests.Adam_is_a_male();
+
+			//SampleTests.Eve_is_unique_and_created_from_a_rib_of_adam();
+			//SampleTests.Eve_can_only_be_create_of_a_rib_of_adam();
+			//SampleTests.Eve_is_a_human();
+			//SampleTests.Eve_is_a_female();
+			//SampleTests.Reproduction_always_result_in_a_male_or_female();
+			//SampleTests.Humans_can_reproduce_when_there_is_a_name_a_mother_and_a_father();
+			SampleTests.Father_and_mother_are_essential_for_reproduction();
+
+			Console.WriteLine("Hello World!");
 		}
 	}
 }
