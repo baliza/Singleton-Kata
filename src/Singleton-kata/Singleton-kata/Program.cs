@@ -8,7 +8,7 @@ namespace Singleton_kata
     class Program
     {
 
-        public sealed class Adam : Human
+        public sealed class Adam : Male
         {
             static Adam adam;
             private Adam()
@@ -24,7 +24,7 @@ namespace Singleton_kata
 
         }
         public class Eve { }
-        public class Male { }
+        public class Male : Human { }
         public class Female { }
         public abstract class Human { }
 
@@ -60,15 +60,15 @@ namespace Singleton_kata
             public static void Adam_is_a_human()
             {
                 Assert.IsTrue(Adam.GetInstance() is Human); 
-            }
-
- /*
+            } 
             
             public static void Adam_is_a_male()
             { 
                 Assert.IsTrue(Adam.GetInstance() is Male);
             }
 
+
+/*
             
             public static void Eve_is_unique_and_created_from_a_rib_of_adam()
             {
@@ -156,6 +156,7 @@ namespace Singleton_kata
                 SampleTests.Adam_is_unique_and_only_GetInstance_can_return_adam();
                 SampleTests.Adam_is_unique_and_cannot_be_overriden();
                 SampleTests.Adam_is_a_human();
+                SampleTests.Adam_is_a_male();
                 Console.WriteLine("Hello World!");
             }
         }
