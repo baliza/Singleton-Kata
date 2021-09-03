@@ -23,7 +23,7 @@ namespace Singleton_kata
 			}
 		}
 
-		public sealed class Eve
+		public sealed class Eve : Human
 		{
 			private Adam _adam;
 			private static Eve _eve;
@@ -120,12 +120,11 @@ namespace Singleton_kata
 				}
 			}
 
-			/*
-                                    public static void Eve_is_a_human()
-                                    {
-                                        Assert.IsTrue(Eve.GetInstance(Adam.GetInstance()) is Human);
-                                    }
-
+			public static void Eve_is_a_human()
+			{
+				Assert.IsTrue(Eve.GetInstance(Adam.GetInstance()) is Human);
+			}
+/*
                                     public static void Eve_is_a_female()
                                     {
                                         Assert.IsTrue(Eve.GetInstance(Adam.GetInstance()) is Female);
@@ -177,14 +176,15 @@ namespace Singleton_kata
 
 			private static void Main(string[] args)
 			{
-				//SampleTests.Adam_is_unique();
-				//SampleTests.Adam_is_unique_and_only_GetInstance_can_return_adam();
-				//SampleTests.Adam_is_unique_and_cannot_be_overriden();
-				//SampleTests.Adam_is_a_human();
-				//SampleTests.Adam_is_a_male();
+				SampleTests.Adam_is_unique();
+				SampleTests.Adam_is_unique_and_only_GetInstance_can_return_adam();
+				SampleTests.Adam_is_unique_and_cannot_be_overriden();
+				SampleTests.Adam_is_a_human();
+				SampleTests.Adam_is_a_male();
 
-				//SampleTests.Eve_is_unique_and_created_from_a_rib_of_adam();
-				SampleTests.Eve_can_only_be_create_of_a_rib_of_adam();
+				SampleTests.Eve_is_unique_and_created_from_a_rib_of_adam();
+//				SampleTests.Eve_can_only_be_create_of_a_rib_of_adam();
+				SampleTests.Eve_is_a_human();
 				Console.WriteLine("Hello World!");
 			}
 		}
