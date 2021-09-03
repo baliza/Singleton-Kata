@@ -11,7 +11,7 @@ namespace Singleton_kata
 		{
 			private static Adam _adam;
 
-			private Adam() : base("Adam", null, null)
+			private Adam() : base("Adam")
 			{
 			}
 
@@ -28,7 +28,7 @@ namespace Singleton_kata
 			private Adam _adam;
 			private static Eve _eve;
 
-			private Eve(Adam adam) : base("Eve", null, null)
+			private Eve(Adam adam) : base("Eve")
 			{
 				if (adam == null)
 					throw new ArgumentNullException("Eva needs a rib of Adam to be born");
@@ -45,6 +45,8 @@ namespace Singleton_kata
 
 		public class Male : Human
 		{
+			protected Male(string name) : base(name) { }
+
 			public Male(string name, Female mother, Male father) : base(name, mother, father)
 			{
 			}
@@ -52,6 +54,7 @@ namespace Singleton_kata
 
 		public class Female : Human
 		{
+			protected Female(string name) : base(name) { }
 			public Female(string name, Female mother, Male father) : base(name, mother, father)
 			{
 			}
@@ -63,14 +66,20 @@ namespace Singleton_kata
 			public readonly Female Mother;
 			public readonly Male Father;
 
+			protected Human(string name)
+			{
+				if (string.IsNullOrEmpty(name))
+					throw new ArgumentNullException("Every Human needs a name");
+				Name = name;
+			}
 			public Human(string name, Female mother, Male father)
 			{
-				//if (string.IsNullOrEmpty(name))
-				//	throw new ArgumentNullException("Every Human needs a name");
-				//if (mother == null)
-				//	throw new ArgumentNullException("Every Human needs a mother");
-				//if (father == null)
-				//	throw new ArgumentNullException("Every Human needs a father");
+				if (string.IsNullOrEmpty(name))
+					throw new ArgumentNullException("Every Human needs a name");
+				if (mother == null)
+					throw new ArgumentNullException("Every Human needs a mother");
+				if (father == null)
+					throw new ArgumentNullException("Every Human needs a father");
 				Name = name;
 				Mother = mother;
 				Father = father;
