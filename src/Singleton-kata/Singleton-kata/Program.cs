@@ -8,7 +8,7 @@ namespace Singleton_kata
     class Program
     {
 
-        public sealed class Adam
+        public sealed class Adam : Human
         {
             static Adam adam;
             private Adam()
@@ -56,14 +56,13 @@ namespace Singleton_kata
             {
                 Assert.IsTrue(typeof(Adam).IsSealed);
             }
-
- /*
             
             public static void Adam_is_a_human()
             {
                 Assert.IsTrue(Adam.GetInstance() is Human); 
             }
 
+ /*
             
             public static void Adam_is_a_male()
             { 
@@ -156,6 +155,7 @@ namespace Singleton_kata
                 SampleTests.Adam_is_unique();
                 SampleTests.Adam_is_unique_and_only_GetInstance_can_return_adam();
                 SampleTests.Adam_is_unique_and_cannot_be_overriden();
+                SampleTests.Adam_is_a_human();
                 Console.WriteLine("Hello World!");
             }
         }
